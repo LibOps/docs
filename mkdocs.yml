@@ -11,6 +11,9 @@ plugins:
   - tags
 
 nav:
-  - Home: 'index.md'
-  - Development: 'development/index.md'
+  - Home: index.md
+  - Development:
+    - Overview: development/index.md
+    - LibOps CLI: development/cli.md
+    - LibOps YML: development/yml.md
   - Site: 'site/index.md'
