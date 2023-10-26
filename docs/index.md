@@ -2,7 +2,7 @@
 
 ## Accessing your LibOps Site
 
-How to create a site and [access your site](development/index.md#access).
+How to create a site and access your site can be found in [the site docs](site/index.md).
 
 ## Developer documentation
 
