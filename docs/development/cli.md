@@ -76,6 +76,14 @@ git commit -m "drush cex"
 git push origin development
 ```
 
+### backup
+
+Running `libops backup` will backup the database for your LibOps environment. For example you could backup the production database by running
+
+```
+libops backup -e production
+```
+
 ### import db
 
 Running `libops import db` can get a SQL file on your local machine imported into a LibOps environment. For example, to import a SQL file called "drupal.sql" from your local machine to development you can run:

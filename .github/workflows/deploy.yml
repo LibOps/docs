@@ -28,7 +28,8 @@ jobs:
       with:
         service: 'docs-production'
         image: 'us-docker.pkg.dev/${{ secrets.GCLOUD_PROJECT }}/shared/docs:main'
-        project_id: ${{ secrets.GCLOUD_PROJECT }}
+        project_id: ${{ secrets.GCLOUD_CR_PROJECT }}
         region: ${{ secrets.GCLOUD_REGION }}
     - name: 'Use output'
       run: 'curl -v -s -o /dev/null "${{ steps.deploy.outputs.url }}"'
+
