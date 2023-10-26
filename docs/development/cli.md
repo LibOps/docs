@@ -56,17 +56,17 @@ libops backup -e production
 
 ### sequelace
 
-On Mac OS with[Sequel Ace](https://sequel-ace.com/) installed, running `libops sequelace` will open a connection to your LibOps site's database. You could connect to production similarly via
+On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `libops sequelace` will open a connection to your LibOps development environment database. You could connect to production similarly via
 
 ```
 libops sequelace -e production
 ```
 
-![Example sequelace command](/assets/img/sequelace.gif)
+![Demonstration of sequelace command execution](/assets/img/sequelace.gif)
 
 ### get config
 
-Running `libops get config` will run `drush cex` on your environment, download the contents of the config export, and save that content into your local checked out copy. So you can export your config from production and push the config with something like
+Running `libops get config` will run `drush cex` on your environment, download the contents of the config export, and save that export to your local checked out git repo. You could export your config from production and push the config with something like:
 
 ```
 cd /path/to/your/libops/site
@@ -78,7 +78,7 @@ git push origin development
 
 ### backup
 
-Running `libops backup` will backup the database for your LibOps environment. For example you could backup the production database by running
+Running `libops backup` will backup the database for your LibOps environment. For example you could backup the production database by running:
 
 ```
 libops backup -e production
@@ -94,7 +94,7 @@ libops import db --file drupal.sql
 
 ### sync-db
 
-Running `libops sync-db` can get the database from one environment into another. For example, to import the production database into development you can run:
+Running `libops sync-db` can copy the database from one environment into another. For example, to import the production database into development you can run:
 
 ```
 libops sync-db --source production --target development
