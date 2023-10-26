@@ -27,7 +27,7 @@ jobs:
       uses: 'google-github-actions/deploy-cloudrun@v1'
       with:
         service: 'docs-production'
-        image: 'us-docker.pkg.dev/${{ secrets.GCLOUD_PROJECT }}/${{ inputs.image }}:main'
+        image: 'us-docker.pkg.dev/${{ secrets.GCLOUD_PROJECT }}/shared/docs:main'
         project_id: ${{ secrets.GCLOUD_PROJECT }}
         region: ${{ secrets.GCLOUD_REGION }}
     - name: 'Use output'
