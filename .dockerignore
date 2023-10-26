@@ -1,0 +1,5 @@
+.dockerignore
+.gitignore
+.cache
+site
+Dockerfile

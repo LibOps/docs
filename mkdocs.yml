@@ -1,0 +1,16 @@
+site_name: LibOps
+site_url: https://docs.libops.io/
+
+repo_url: https://github.com/LibOps/docs
+edit_uri: 'edit/main/docs/'
+
+theme: material
+plugins:
+  - search
+  - social
+  - tags
+
+nav:
+  - Home: 'index.md'
+  - Development: 'development/index.md'
+  - Site: 'site/index.md'

@@ -1,0 +1,12 @@
+name: push
+on:
+  push:
+jobs:
+  build-push:
+    uses: libops/actions/.github/workflows/build-push.yml@main
+    with:
+      image: "shared/docs"
+    permissions:
+      contents: read
+      id-token: write
+    secrets: inherit
