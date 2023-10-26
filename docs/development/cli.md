@@ -2,11 +2,28 @@
 
 The [LibOps CLI](https://github.com/LibOps/homebrew-cli) is a useful utility to interact with your LibOps site.
 
-## Basic overview
+## Install
 
-The LibOps CLI should also be ran from the root of your GitHub repository. This is so the CLI can know the name of your site automatically without having to pass it in with the `--site` flag.
+First, you must install Google Cloud's CLI [gcloud](https://cloud.google.com/sdk/docs/install)
 
-After installing, you can see the list of commands by running `libops --help`
+After `gcloud` is installed you can install LibOps CLI using homebrew or a binary.
+
+### Homebrew
+You can install the LibOps CLI using homebew
+```
+brew tap libops/cli
+brew install libops
+```
+
+### Download Binary
+
+Instead of homebrew, you can download a binary for your system from [the latest release](https://github.com/LibOps/homebrew-cli/releases/latest)
+
+Then put the binary in a directory that is in your `$PATH`
+
+## Usage
+
+After installing the CLI, you can see the list of commands by running `libops --help`. The LibOps CLI should be ran from the root of your GitHub repository. This is so the CLI can know the name of your site automatically without having to pass it in with the `--site` flag.
 
 ```
 $ libops --help
@@ -28,7 +45,8 @@ Available Commands:
 ```
 
 ## Default environment
-By default, any command you run with `libops` will be against your development environment. This can be changed by passed the `-e` or `--environment` flag. e.g.
+
+Any command you run with `libops` will be against your development environment. This can be changed by passed the `-e` or `--environment` flag. e.g.
 
 ```
 libops backup -e production
