@@ -54,6 +54,25 @@ libops backup -e production
 
 ## Commands
 
+### set developer
+
+Use this command to add a developer to your LibOps site environments.
+
+LibOps site environments and CLI commands are protected by a firewall and/or gcloud authentication. To provide access to a developer `sara@institution.edu` who works from two locations with IP addresses `1.2.3.4 and `5.6.7.8` you could run the command:
+
+```
+libops set developer --google-account sara@institution.edu --skip-pub-key --ip 1.2.3.4 --ip 5.6.7.8
+git add libops.yml
+git commit -m "Adding Sara"
+git push origin development
+```
+
+If you happen to have her SSH public key on your computer, you could also set her up for SFTP access
+
+```
+libops set developer --google-account sara@institution.edu --pub-key /path/to/sara/id_rsa.pub
+```
+
 ### sequelace
 
 On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `libops sequelace` will open a connection to your LibOps development environment database. You could connect to production similarly via
