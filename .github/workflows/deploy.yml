@@ -1,6 +1,9 @@
 name: build-push-deploy
 on:
   push:
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build-push:
     uses: libops/actions/.github/workflows/build-push.yml@main
