@@ -90,7 +90,7 @@ From there, you can add yourself and other GitHub users to your site by editing 
 
 By default, your LibOps site has a development and production environment.
 
-You can make code changes in development, then deploy them to production once they're ready.
+You can make code changes in development, then deploy them to production once they're ready by creating a GitHub release.
 
 If you have several features you're developing at any given time, you may want to have separate branches off of development to do so. Each branch you create off of the development branch automatically creates its own new environment.
 
