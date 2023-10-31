@@ -21,3 +21,25 @@ You will also be invited as a contributor to the GitHub repository that houses t
 After you've created a site on LibOps you'll be able to view the URLs to all your site environments on [your LibOps account page](https://www.libops.io/user).
 
 You can also find the URLs in your GitHub repository.
+
+## Access your codebase
+
+Currently GitHub access to your GitHub repository can only be managed from [the LibOps website](https://www.libops.io).
+
+From there, you can add yourself and other GitHub users to your site by editing your site and adding their GitHub usernames.
+
+![Demonstration of adding GitHub user to site](/assets/img/github.gif)
+
+## Environments
+
+By default, your LibOps site has a development and production environment.
+
+You can make code changes in development, then deploy them to production once they're ready by creating a GitHub release.
+
+You can read more about site environments in [the development docs](/development).
+
+### Cold starts
+
+For LibOps sites that are not on a paid plan, both the development and production environments will power off after a period of no activity. This can cause the initial page load to take up to 60 seconds to load while the environment comes online. After coming online, your site will be responsive as you'd expect.
+
+Paid plans will **never** have cold starts for the production environment.
