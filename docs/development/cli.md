@@ -58,10 +58,10 @@ libops backup -e production
 
 Use this command to add a developer to your LibOps site environments.
 
-LibOps site environments and CLI commands are protected by a firewall and/or gcloud authentication. To provide access to a developer `sara@institution.edu` who works from two locations with IP addresses `1.2.3.4 and `5.6.7.8` you could run the command:
+LibOps site environments and CLI commands are protected by a firewall and/or gcloud authentication. To provide access to a developer `sara@institution.edu` who works from two locations with IP addresses `1.2.3.4` and `5.6.7.8` you could run the command:
 
 ```
-libops set developer --google-account sara@institution.edu --skip-pub-key --ip 1.2.3.4 --ip 5.6.7.8
+libops set developer --google-account sara@institution.edu --skip-pub-key --ip 1.2.3.4/32 --ip 5.6.7.8/32
 git add libops.yml
 git commit -m "Adding Sara"
 git push origin development
