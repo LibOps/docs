@@ -6,7 +6,7 @@ Here you will find all you need to know about developing and managing your site 
 
 ### LibOps CLI
 
-If you haven't already, install the [libops CLI](https://github.com/LibOps/homebrew-cli) on your local machine.
+If you haven't already, install the [libops CLI](./cli.md) on your local machine.
 
 The LibOps CLI has many useful commands to interact with your site. You can learn more about them by visiting [the docs for the CLI](./cli.md) or by running this command in your terminal:
 
@@ -14,25 +14,77 @@ The LibOps CLI has many useful commands to interact with your site. You can lear
 libops --help
 ```
 
+### Quick start
+
+Your site's public URL, libops CLI commands ran against your site, and uploading code to an environment using SFTP, are all managed by [libops.yml](./yml.md)
+
+A quick way to configure your working machine to properly authenticate to your LibOps site is by running this command:
+
+```
+libops set developer
+```
+
+That command does three things:
+
+1. Adds the Google Cloud account you're authenticated as with the `gcloud` command to your libops.yml `developer` mapping. This is what authenticates you when running LibOps CLI commands against your site
+2. Adds your current public IP address to the HTTPS and SSH firewalls. The default value can be overriden with the `--ip` flag
+3. Adds your public SSH key to libops.yml so you can SFTP to your environment
+
+## Authentication Overview
+
+### Google Cloud authentication
+
+The LibOps CLI makes calls to the `gcloud` CLI for requests to LibOps services that require JWT authentication. In order to properly authenticate, you must configure your LibOps site to allow requests from your Google Cloud account. This configuration is done by adding your Google Cloud email address to the [libops.yml](./yml.md) `developers` mapping.
+
+You can add your currently authenticated gcloud email by simply running the command
+
+```
+libops set developer
+```
+
+Or if you're adding someone else, you can add them with
+
+```
+libops set developer --google-account someone-else@instituion.edu
+```
+
 ### Firewall Settings
 
 Until your site goes live, all your LibOps environments are behind a firewall so only you and your team can access the sites.
 
-Ensure the public IPv4 address of the machine(s) you're working from is in the `ssh-firewall` and `https-firewall` lists in [libops.yml](./libops-yml.md). If the IP address you're visiting the site is not configured in libops.yml, you will not be able to access your site.
+Ensure the public IPv4 address of the machine(s) you're working from is in the `ssh-firewall` and `https-firewall` lists in [libops.yml](./yml.md). If the IP address you're visiting the site is not configured in libops.yml, you will not be able to access your site.
 
-If you do not know your public IP you can run this command in your terminal:
+If you do not know your public IP you can run this command in your terminal to automatically detect your public IP address and configure your `libops.yml`:
 
 ```
-curl ifconfig.me
+libops set developer
+```
+
+Or if you know your IP address, you can pass it in with the `--ip` flag:
+
+```
+libops set developer --ip 1.2.3.4/32
 ```
 
 ### SFTP Connection
 
-Ensure your gcloud email and **public** SSH key(s) (i.e. `~/.ssh/id_rsa.pub`) are added to `developers` in [libops.yml](./libops-yml.md)
+Ensure your gcloud email and **public** SSH key(s) (i.e. `~/.ssh/id_rsa.pub`) are added to `developers` in [libops.yml](./yml.md)
 
 The email being set in libops.yml is required to run LibOps CLI commands. Please ensure the email you set here is the same as the one you setup your LibOps CLI with.
 
 The public SSH keys are required to SFTP to your environment and/or run interactive drush commands.
+
+```
+libops set developer --pub-key ~/.ssh/id_rsa.pub
+```
+
+## GitHub Access
+
+Currently GitHub access to your GitHub repository can only be managed from [the LibOps website](https://www.libops.io).
+
+From there, you can add yourself and other GitHub users to your site by editing your site and adding their GitHub usernames.
+
+![Demonstration of adding GitHub user to site](/assets/img/github.gif)
 
 ## Environments
 
@@ -43,6 +95,12 @@ You can make code changes in development, then deploy them to production once th
 If you have several features you're developing at any given time, you may want to have separate branches off of development to do so. Each branch you create off of the development branch automatically creates its own new environment.
 
 GitHub branches equate to individual environments on LibOps. The exception to this is your production environment. Production code is pushed using GitHub releases/tags.
+
+### Cold starts
+
+For LibOps sites that are not on a paid plan, both the development and production environments will power off after a period of no activity. This can cause the initial page load to take anywhere up to 60 seconds to load while the environment comes online. After coming online, your site will be responsive as you'd expect.
+
+Paid plans will **never** have cold starts for the production environment.
 
 ### Branch Naming Rules
 
