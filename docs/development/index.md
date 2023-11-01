@@ -126,9 +126,11 @@ Deleting the branch will delete the environment, including all files and the dat
 
 ## Making code changes
 
-Any commit pushed to GitHub will automatically deploy to the respective environment. Typically from the time the commit was received by GitHub until it's deployed and running in the environment takes around 2-3 minutes.
+Any commit pushed to GitHub will automatically deploy to the respective environment. Typically from the time the commit was received by GitHub until it's deployed and running in the environment takes around 2-3 minutes. You'll know the code has been fully deployed once the "deploy" GitHub Action in your repository is all green.
 
-While only using git to make code changes is certainly supported, often it's easier to use SFTP to quickly iterate on a new feature in a LibOps environment. To do so, you will want to configure your IDE.
+![Demonstration of viewing deployment status in GitHub](/assets/img/check-deployment.gif)
+
+While only using git to make code changes is certainly supported, often it's quicker and easier to use SFTP to iterate on a new feature in a LibOps environment. To do so, you will want to configure your IDE.
 
 ### Configure your IDE for SFTP
 
