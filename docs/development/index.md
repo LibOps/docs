@@ -70,9 +70,7 @@ libops set developer --ip 1.2.3.4/32
 
 Ensure your gcloud email and **public** SSH key(s) (i.e. `~/.ssh/id_rsa.pub`) are added to `developers` in [libops.yml](./yml.md)
 
-The email being set in libops.yml is required to run LibOps CLI commands. Please ensure the email you set here is the same as the one you setup your LibOps CLI with.
-
-The public SSH keys are required to SFTP to your environment and/or run interactive drush commands.
+Your public SSH keys is required to be configured in libops.yml in order to SFTP to your environment and/or run interactive drush commands.
 
 ```
 libops set developer --pub-key ~/.ssh/id_rsa.pub
