@@ -4,12 +4,22 @@ The [LibOps CLI](https://github.com/LibOps/homebrew-cli) is a useful utility to 
 
 ## Install
 
-First, you must install Google Cloud's CLI [gcloud](https://cloud.google.com/sdk/docs/install)
+### Prerequiste (gcloud)
+
+The LibOps CLI requires Google Cloud's `gcloud` CLI to be installed and authenticated on the same machine you run LibOps CLI commands from.
+
+So before installing LibOps you must:
+
+1. [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install)
+2. [Initialize the gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
+3. [Authenticate the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing#auth-login) to Google Cloud
 
 After `gcloud` is installed you can install LibOps CLI using homebrew or a binary.
 
 ### Homebrew
-You can install the LibOps CLI using homebew
+
+You can install the LibOps CLI using homebrew
+
 ```
 brew tap libops/cli
 brew install libops
@@ -23,7 +33,7 @@ Then put the binary in a directory that is in your `$PATH`
 
 ## Usage
 
-After installing the CLI, you can see the list of commands by running `libops --help`. The LibOps CLI should be ran from the root of your GitHub repository. This is so the CLI can know the name of your site automatically without having to pass it in with the `--site` flag.
+After installing the CLI, you can see the list of commands by running `libops --help`. The **LibOps CLI should be ran from the root of your GitHub repository**. This is so the CLI can automatically read the name of your site without having to pass the `--site` flag to specify the name.
 
 ```
 $ libops --help
@@ -41,12 +51,21 @@ Available Commands:
   help        Help about any command
   import      Import resources to your LibOps environment.
   sequelace   Connect to your LibOps database using Sequel Ace (Mac OS only)
+  set         Set information on your LibOps environment.
   sync-db     Transfer the database from one environment to another
+
+Flags:
+  -e, --environment string   LibOps environment (default "development")
+  -h, --help                 help for libops
+  -p, --site string          LibOps project/site (default "YOUR-LIBOPS-SITE")
+  -v, --version              version for libops
+
+Use "libops [command] --help" for more information about a command.
 ```
 
 ## Default environment
 
-Any command you run with `libops` will be against your development environment. This can be changed by passed the `-e` or `--environment` flag. e.g.
+Any command you run with `libops` will run against your development environment. This can be changed by passing the `-e` or `--environment` flag. e.g.
 
 ```
 libops backup -e production
@@ -61,17 +80,31 @@ Use this command to add a developer to your LibOps site environments.
 LibOps site environments and CLI commands are protected by a firewall and/or gcloud authentication. To provide access to a developer `sara@institution.edu` who works from two locations with IP addresses `1.2.3.4` and `5.6.7.8` you could run the command:
 
 ```
-libops set developer --google-account sara@institution.edu --skip-pub-key --ip 1.2.3.4/32 --ip 5.6.7.8/32
+libops set developer \
+  --google-account sara@institution.edu \
+  --skip-pub-key \
+  --ip 1.2.3.4/32 \
+  --ip 5.6.7.8/32
 git add libops.yml
 git commit -m "Adding Sara"
 git push origin development
 ```
 
-If you happen to have her SSH public key on your computer, you could also set her up for SFTP access
+If you happen to have her public SSH key on your computer, you could also set her up for SFTP access.
 
 ```
-libops set developer --google-account sara@institution.edu --pub-key /path/to/sara/id_rsa.pub
+libops set developer \
+  --google-account sara@institution.edu \
+  --pub-key /path/to/sara/id_rsa.pub
 ```
+
+Similarly, you could also set yourself up by running
+
+```
+libops set developer
+```
+
+That command will automatically read your gcloud authenticated email, SSH public key, and public IP address and add the information to `libops.yml`.
 
 ### sequelace
 
