@@ -21,10 +21,22 @@ Your site's public URL, libops CLI commands ran against your site, and uploading
 A quick way to configure your working machine to properly authenticate to your LibOps site is by running this command:
 
 ```
+cd /path/to/libops/sites
 libops set developer
+git add libops.yml
+git commit -m "Adding myself to libops.yml"
+git push origin development
 ```
 
-That command does three things:
+After the GitHub Actions finish running for that `git push` in your GitHub repository, you could get a login link to your development environment by running
+
+```
+libops drush uli
+```
+
+#### More info on libops set developer
+
+`libops set developer` does three things:
 
 1. Adds the Google Cloud account you're authenticated as with the `gcloud` command to your libops.yml `developer` mapping. This is what authenticates you when running LibOps CLI commands against your site
 2. Adds your current public IP address to the HTTPS and SSH firewalls. The default value can be overriden with the `--ip` flag
