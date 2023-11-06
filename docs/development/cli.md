@@ -106,6 +106,24 @@ libops set developer
 
 That command will automatically read your gcloud authenticated email, SSH public key, and public IP address and add the information to `libops.yml`.
 
+### drush
+
+You can use `libops drush` to execute drush commands against your LibOps environment.
+
+#### Reset super user password
+
+```
+libops -e production drush -- uli --uid 1
+```
+
+#### Clear the cache
+
+You could clear the cache on your development environment by running
+
+```
+libops drush -- cr
+```
+
 ### sequelace
 
 On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `libops sequelace` will open a connection to your LibOps development environment database. You could connect to production similarly via
@@ -126,6 +144,42 @@ libops get config -e production
 git add --all config
 git commit -m "drush cex"
 git push origin development
+```
+
+### get info
+
+Running `libops get info` will return a JSON string containing connection information for different aspects of your LibOps environment:
+
+```
+libops get info | jq .
+{
+  "database": {
+    "host": "mariadb",
+    "name": "drupal",
+    "port": 3306,
+    "credentials": {
+      "username": "root",
+      "password": "***"
+    }
+  },
+  "drupal": {
+    "url": "https://site.domain"
+  },
+  "matomo": {
+    "url": "https://site.domain/matomo/",
+    "credentials": {
+      "username": "***",
+      "password": "***"
+    }
+  },
+  "ssh": {
+    "host": "10.1.2.255",
+    "port": 1234,
+    "credentials": {
+      "username": "****"
+    }
+  }
+}
 ```
 
 ### backup
