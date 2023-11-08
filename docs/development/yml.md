@@ -11,7 +11,8 @@ php: 8.2
 
 # The CIDR notation for every source IP that can access your LibOps non-production environments over HTTPS
 # Should be restricted to just IPs for your organization.
-# Network mask (e.g. /24) must be greater than or equal to 16
+# Both IPv4 and IPv6 addresses are supported.
+# Network mask (e.g. /24) must be greater than or equal to 16 for IPv4 and 120 for IPv6
 https-firewall:
   # private IPs are just examples. Can be replaced (along with this comment)
   - 192.168.50.2/32
@@ -20,6 +21,7 @@ https-firewall:
 
 # The CIDR notation for every source IP that can SFTP into your LibOps non-production environments
 # Should be restricted to just IPs for your organization. Ideally, just for machines that need access.
+# Only IPv4 are supported for establishing SSH connections to your LibOps environment
 ssh-firewall:
   # private IPs are just examples. Can be replaced (along with this comment)
   - 127.0.12.1/32
@@ -27,6 +29,8 @@ ssh-firewall:
 
 # The CIDR notation for every IP Address that can not access any of your LibOps environments, including production
 # This can be used to block malicious actors
+# Both IPv4 and IPv6 addresses are supported.
+# Network mask (e.g. /24) must be greater than or equal to 16 for IPv4 and 120 for IPv6
 blocked-ips:
   # private IPs are just examples. Can be replaced (along with this comment)
   - 127.0.123.123/32
