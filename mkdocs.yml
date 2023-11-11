@@ -16,4 +16,5 @@ nav:
     - Overview: development/index.md
     - LibOps CLI: development/cli.md
     - LibOps YML: development/yml.md
+    - Redis: development/redis.md
   - Site: 'site/index.md'
