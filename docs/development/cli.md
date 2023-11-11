@@ -132,7 +132,7 @@ On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `libops 
 libops sequelace -e production
 ```
 
-![Demonstration of sequelace command execution](/assets/img/sequelace.gif)
+![Demonstration of sequelace command execution](../assets/img/sequelace.gif)
 
 ### get config
 

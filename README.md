@@ -5,3 +5,14 @@ Viewable at https://docs.libops.io
 This repository contains the documentation for the LibOps platform.
 
 This repository also serves as an issue queue for any bugs or feature requests for LibOps.
+
+
+## Local docs development
+
+```
+docker build -t docs:main .
+docker run -p 8080:8080 docs:main
+```
+
+You should be able to view the docs in your web browser at http://localhost:8080
+

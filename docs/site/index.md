@@ -28,7 +28,7 @@ Currently GitHub access to your GitHub repository can only be managed from [the 
 
 From there, you can add yourself and other GitHub users to your site by editing your site and adding their GitHub usernames.
 
-![Demonstration of adding GitHub user to site](/assets/img/github.gif)
+![Demonstration of adding GitHub user to site](../assets/img/github.gif)
 
 ## Environments
 
@@ -36,7 +36,7 @@ By default, your LibOps site has a development and production environment.
 
 You can make code changes in development, then deploy them to production once they're ready by creating a GitHub release.
 
-You can read more about site environments in [the development docs](/development).
+You can read more about site environments in [the development docs](../development/index.md).
 
 ### Cold starts
 
