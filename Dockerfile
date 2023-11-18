@@ -1,10 +1,15 @@
 FROM python:3.9-alpine
+
 RUN mkdir -p /docs
+
 WORKDIR /docs
-COPY . .
+
+COPY requirements.txt .
 RUN apk add --no-cache cairo \
-  && pip install -r requirements.txt \
-  && mkdocs build
+  && pip install -r requirements.txt 
+
+COPY . .
+RUN mkdocs build
 
 # serve the docs via nginx
 FROM nginx:1.25
