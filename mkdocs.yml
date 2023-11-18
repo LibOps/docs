@@ -17,4 +17,7 @@ nav:
     - LibOps CLI: development/cli.md
     - LibOps YML: development/yml.md
     - Redis: development/redis.md
-  - Site: 'site/index.md'
+    - Metrics: development/metrics.md
+  - Site:
+    - Overview: 'site/index.md'
+    - Login: 'site/login.md'
