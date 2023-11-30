@@ -21,3 +21,4 @@ nav:
   - Site:
     - Overview: 'site/index.md'
     - Login: 'site/login.md'
+    - CDN: 'site/cdn.md'
