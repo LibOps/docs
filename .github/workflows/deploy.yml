@@ -35,4 +35,13 @@ jobs:
         region: ${{ secrets.GCLOUD_REGION }}
     - name: 'Use output'
       run: 'curl -v -s -o /dev/null "${{ steps.deploy.outputs.url }}"'
-
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+      with:
+        version: '>= 455.0.0'
+    - name: 'Invalidate cache'
+      run: |
+        gcloud compute url-maps invalidate-cdn-cache ${{ secrets.GCLOUD_LB }} \
+          --host docs.libops.io \
+          --path "/*" \
+          --project ${{ secrets.GCLOUD_CR_PROJECT }}
