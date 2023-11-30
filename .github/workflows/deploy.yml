@@ -44,4 +44,4 @@ jobs:
         gcloud compute url-maps invalidate-cdn-cache ${{ secrets.GCLOUD_LB }} \
           --host docs.libops.io \
           --path "/*" \
-          --project ${{ secrets.GCLOUD_PROJECT }}
+          --project ${{ secrets.GCLOUD_CR_PROJECT }}
