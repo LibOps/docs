@@ -46,9 +46,12 @@ developers:
     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQClhilc7GxWn9Iju1oXNH08BYCshILrsZr/0mct/QdJudfzLidIj8KLeiGajuyeiKTfmuEd9OnXt0mjA5rhN+qS2G73f+YCdr+ax5jmmw63i75LSf+GY/0BaoAoxikyq21eHGv17Ay9k1J9Wy0AEMqIERQ/Ro3H9CPmSlxeD3HjY7WMcx01Zt4T8mLFWMwWDVa7gmgs0CcccdshlAf6wAINA6HNEeMi0R7k68jH7cBdtRfllDx/DpdFmrMq0iBLYJYr+cC/ssEv3tW5oBU6i28uyMGdjiCEX4d/66MULAfMrOzpVWuxEh8Kuvs62Yl+bXnuwprQGh5zbbDpbLULWGfnoApqLLo/8mMo/3TuIUyjwu4IrTNQzbSvA7MKwkpwcEq3kv1kpWZY3zCaxYVEKLwYhJUClnOizNZck6RI2bN17Gz2aYiYua7z7O7ZuGmcS1tMtQ56nJeD0kHbWK+hBTuk/9nEvyk4Q0MV0zK49K5u8WgAAtIiofQ7GKUUHqrLUZc= jcorall3@kent.edu
     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDS2UinVOQSds/MFapKvs+9TrhAzEh4xvSMHJD3t/vfj6A29O9wOhQbSGPU7ZqBuj7g+wbyZS266SAtJzV6YcDud03PepxeK8lQbW9WLUqqGizr9xr+p7jVkLreqZxn58uGKcVafbbJoOdTlfjxrRVAu6rpWE4CXKAHDKftVL3s9cavR9qvfF6oSxpPVzGhZ+6OWqvj72YPZM6wQ+FWvyjnsScKnfMuhv8D3TDRqxhGyLOmP6FaIpHHIb+NSW3ckfFRctWIAt8e6vWwLLvYBCSJV8xIL7Rf6owBu7lpwSs9+s2X67ZB2kwngh6JOSlB2o4YPRm945j7QKQbg1d4Xudx/ce+oiBZ2NrWCsnXcjECju8KYkUwLrxpZg5qGl63ZCipCXBgfv/VhfevSoxKTAfoNcVKKuQgoTlrosT2yYEeP4UQTa4TsVyffNhzpK7ZHnoV3YQYCt+BYmp42e9SNM9jlzS7/MZ5Xm1qxK3aXOMG62uoblxEQZx+CfgK1bjgdjs= jcorall3@kent.edu
 
+# Solr Version to use. Must be an integer greater than or equal to 8
+# And the MAJOR release only
+solr: 9
+
 # Everything below this line is a placeholder and currently unused
 mariadb: 10.3.39
-solr: 8
 environments:
   - development
   - production
