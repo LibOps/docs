@@ -39,10 +39,3 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         version: '>= 455.0.0'
-    - name: 'Invalidate cache'
-      run: |
-        gcloud compute url-maps invalidate-cdn-cache ${{ secrets.GCLOUD_LB }} \
-          --host docs.libops.io \
-          --path "/*" \
-          --project ${{ secrets.GCLOUD_CR_PROJECT }} \
-          --async
