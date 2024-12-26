@@ -4,14 +4,14 @@ Here you will find all you need to know about developing and managing your site 
 
 ## Initial setup
 
-### LibOps CLI
+### sitectl
 
-If you haven't already, install the [libops CLI](./cli.md) on your local machine.
+If you haven't already, install [sitectl](./cli.md) on your local machine.
 
-The LibOps CLI has many useful commands to interact with your site. You can learn more about them by visiting [the docs for the CLI](./cli.md) or by running this command in your terminal:
+`sitectl` has many useful commands to interact with your site. You can learn more about them by visiting [the sitectl docs](./cli.md) or by running this command in your terminal:
 
 ```
-libops --help
+sitectl --help
 ```
 
 ### Quick start
@@ -22,7 +22,7 @@ A quick way to configure your working machine to properly authenticate to your L
 
 ```
 cd /path/to/libops/sites
-libops set developer
+sitectl set developer
 git add libops.yml
 git commit -m "Adding myself to libops.yml"
 git push origin development
@@ -31,12 +31,12 @@ git push origin development
 After the GitHub Actions finish running for that `git push` in your GitHub repository, you could get a login link to your development environment by running
 
 ```
-libops drush uli
+sitectl drush uli
 ```
 
 #### More info on libops set developer
 
-`libops set developer` does three things:
+`sitectl set developer` does three things:
 
 1. Adds the Google Cloud account you're authenticated as with the `gcloud` command to your libops.yml `developer` mapping. This is what authenticates you when running LibOps CLI commands against your site
 2. Adds your current public IP address to the HTTPS and SSH firewalls. The default value can be overriden with the `--ip` flag
@@ -51,13 +51,13 @@ The LibOps CLI makes calls to the `gcloud` CLI for requests to LibOps services t
 You can add your currently authenticated gcloud email by simply running the command
 
 ```
-libops set developer
+sitectl set developer
 ```
 
 Or if you're adding someone else, you can add them with
 
 ```
-libops set developer --google-account someone-else@instituion.edu
+sitectl set developer --google-account someone-else@instituion.edu
 ```
 
 ### Firewall Settings
@@ -69,13 +69,13 @@ Ensure the public IPv4 address of the machine(s) you're working from is in the `
 If you do not know your public IP you can run this command in your terminal to automatically detect your public IP address and configure your `libops.yml`:
 
 ```
-libops set developer
+sitectl set developer
 ```
 
 Or if you know your IP address, you can pass it in with the `--ip` flag:
 
 ```
-libops set developer --ip 1.2.3.4/32
+sitectl set developer --ip 1.2.3.4/32
 ```
 
 ### SFTP Connection
@@ -85,7 +85,7 @@ Ensure your gcloud email and **public** SSH key(s) (i.e. `~/.ssh/id_rsa.pub`) ar
 Your public SSH keys is required to be configured in libops.yml in order to SFTP to your environment and/or run interactive drush commands.
 
 ```
-libops set developer --pub-key ~/.ssh/id_rsa.pub
+sitectl set developer --pub-key ~/.ssh/id_rsa.pub
 ```
 
 ## GitHub Access
@@ -125,7 +125,7 @@ Your GitHub repository will have the URLs for your development and production en
 When you create a new environment, this will create another URL to access the given environment. Once you create a branch in GitHub, you can get the URL to your environment by running
 
 ```
-libops -e BRANCH_NAME get info | jq -r .drupal.url
+sitectl -e BRANCH_NAME get info | jq -r .drupal.url
 ```
 
 Opening a PR will automatically add a comment to the PR with the URL to the environment, too.
@@ -152,7 +152,7 @@ First, you'll need to configure you local machine to connect to your environment
 
 ```
 cd path/to/your/libops/site
-libops config-ssh -e development
+sitectl config-ssh -e development
 ```
 
 This will populate your `~/.ssh/config` so any SSH client can establish a connection to your LibOps development environment at the hostname `development.YOUR-LIBOPS-ID.site`.
