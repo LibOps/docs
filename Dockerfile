@@ -15,5 +15,4 @@ RUN mkdocs build
 FROM nginx:1.27@sha256:42e917aaa1b5bb40dd0f6f7f4f857490ac7747d7ef73b391c774a41a8b994f15
 COPY --from=0 /docs/site /usr/share/nginx/html
 RUN echo 'real_ip_header X-Forwarded-For;' > /etc/nginx/conf.d/real-ip.conf \
-  && echo 'set_real_ip_from 169.254.1.1/32;' >> /etc/nginx/conf.d/real-ip.conf \
-  && echo 'add_header Cache-Control s-maxage=31536000;' > /etc/nginx/conf.d/cache.conf
+  && echo 'set_real_ip_from 169.254.1.1/32;' >> /etc/nginx/conf.d/real-ip.conf
