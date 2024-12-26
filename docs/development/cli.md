@@ -1,12 +1,12 @@
-# LibOps CLI
+# sitectl
 
-The [LibOps CLI](https://github.com/LibOps/homebrew-cli) is a useful utility to interact with your LibOps site.
+[sitectl](https://github.com/LibOps/sitectl) is a useful utility to interact with your LibOps site.
 
 ## Install
 
 ### Prerequiste (gcloud)
 
-The LibOps CLI requires Google Cloud's `gcloud` CLI to be installed and authenticated on the same machine you run LibOps CLI commands from.
+`sitectl` requires Google Cloud's `gcloud` CLI to be installed and authenticated on the same machine you run `sitectl` commands from.
 
 So before installing LibOps you must:
 
@@ -14,33 +14,33 @@ So before installing LibOps you must:
 2. [Initialize the gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
 3. [Authenticate the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing#auth-login) to Google Cloud
 
-After `gcloud` is installed you can install LibOps CLI using homebrew or a binary.
+After `gcloud` is installed you can install `sitectl` using homebrew or a binary.
 
 ### Homebrew
 
-You can install the LibOps CLI using homebrew
+You can install `sitectl` using homebrew
 
 ```
-brew tap libops/cli
-brew install libops
+brew tap libops/homebrew https://github.com/LibOps/homebrew
+brew install libops/homebrew/sitectl
 ```
 
 ### Download Binary
 
-Instead of homebrew, you can download a binary for your system from [the latest release](https://github.com/LibOps/homebrew-cli/releases/latest)
+Instead of homebrew, you can download a binary for your system from [the latest release](https://github.com/LibOps/sitectl/releases/latest)
 
 Then put the binary in a directory that is in your `$PATH`
 
 ## Usage
 
-After installing the CLI, you can see the list of commands by running `libops --help`. The **LibOps CLI should be ran from the root of your GitHub repository**. This is so the CLI can automatically read the name of your site without having to pass the `--site` flag to specify the name.
+After installing the CLI, you can see the list of commands by running `sitectl --help`. The **`sitectl` should be ran from the root of your GitHub repository**. This is so the CLI can automatically read the name of your site without having to pass the `--site` flag to specify the name.
 
 ```
-$ libops --help
+$ sitectl --help
 Interact with your libops site
 
 Usage:
-  libops [command]
+  sitectl [command]
 
 Available Commands:
   backup      Backup your libops environment
@@ -60,7 +60,7 @@ Flags:
   -p, --site string          LibOps project/site (default "YOUR-LIBOPS-SITE")
   -v, --version              version for libops
 
-Use "libops [command] --help" for more information about a command.
+Use "sitectl [command] --help" for more information about a command.
 ```
 
 ## Default environment
@@ -68,7 +68,7 @@ Use "libops [command] --help" for more information about a command.
 Any command you run with `libops` will run against your development environment. This can be changed by passing the `-e` or `--environment` flag. e.g.
 
 ```
-libops backup -e production
+sitectl backup -e production
 ```
 
 ## Commands
@@ -80,7 +80,7 @@ Use this command to add a developer to your LibOps site environments.
 LibOps site environments and CLI commands are protected by a firewall and/or gcloud authentication. To provide access to a developer `sara@institution.edu` who works from two locations with IP addresses `1.2.3.4` and `5.6.7.8` you could run the command:
 
 ```
-libops set developer \
+sitectl set developer \
   --google-account sara@institution.edu \
   --skip-pub-key \
   --ip 1.2.3.4/32 \
@@ -93,7 +93,7 @@ git push origin development
 If you happen to have her public SSH key on your computer, you could also set her up for SFTP access.
 
 ```
-libops set developer \
+sitectl set developer \
   --google-account sara@institution.edu \
   --pub-key /path/to/sara/id_rsa.pub
 ```
@@ -101,19 +101,19 @@ libops set developer \
 Similarly, you could also set yourself up by running
 
 ```
-libops set developer
+sitectl set developer
 ```
 
 That command will automatically read your gcloud authenticated email, SSH public key, and public IP address and add the information to `libops.yml`.
 
 ### drush
 
-You can use `libops drush` to execute drush commands against your LibOps environment.
+You can use `sitectl drush` to execute drush commands against your LibOps environment.
 
 #### Reset super user password
 
 ```
-libops -e production drush -- uli --uid 1
+sitectl -e production drush -- uli --uid 1
 ```
 
 #### Clear the cache
@@ -121,26 +121,26 @@ libops -e production drush -- uli --uid 1
 You could clear the cache on your development environment by running
 
 ```
-libops drush -- cr
+sitectl drush -- cr
 ```
 
 ### sequelace
 
-On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `libops sequelace` will open a connection to your LibOps development environment database. You could connect to production similarly via
+On Mac OS with [Sequel Ace](https://sequel-ace.com/) installed, running `sitectl sequelace` will open a connection to your LibOps development environment database. You could connect to production similarly via
 
 ```
-libops sequelace -e production
+sitectl sequelace -e production
 ```
 
 ![Demonstration of sequelace command execution](../assets/img/sequelace.gif)
 
 ### get config
 
-Running `libops get config` will run `drush cex` on your environment, download the contents of the config export, and save that export to your local checked out git repo. You could export your config from production and push the config with something like:
+Running `sitectl get config` will run `drush cex` on your environment, download the contents of the config export, and save that export to your local checked out git repo. You could export your config from production and push the config with something like:
 
 ```
 cd /path/to/your/libops/site
-libops get config -e production
+sitectl get config -e production
 git add --all config
 git commit -m "drush cex"
 git push origin development
@@ -148,10 +148,10 @@ git push origin development
 
 ### get info
 
-Running `libops get info` will return a JSON string containing connection information for different aspects of your LibOps environment:
+Running `sitectl get info` will return a JSON string containing connection information for different aspects of your LibOps environment:
 
 ```
-libops get info | jq .
+sitectl get info | jq .
 {
   "database": {
     "host": "mariadb",
@@ -184,24 +184,24 @@ libops get info | jq .
 
 ### backup
 
-Running `libops backup` will backup the database for your LibOps environment. For example you could backup the production database by running:
+Running `sitectl backup` will backup the database for your LibOps environment. For example you could backup the production database by running:
 
 ```
-libops backup -e production
+sitectl backup -e production
 ```
 
 ### import db
 
-Running `libops import db` can get a SQL file on your local machine imported into a LibOps environment. For example, to import a SQL file called "drupal.sql" from your local machine to development you can run:
+Running `sitectl import db` can get a SQL file on your local machine imported into a LibOps environment. For example, to import a SQL file called "drupal.sql" from your local machine to development you can run:
 
 ```
-libops import db --file drupal.sql
+sitectl import db --file drupal.sql
 ```
 
 ### sync-db
 
-Running `libops sync-db` can copy the database from one environment into another. For example, to import the production database into development you can run:
+Running `sitectl sync-db` can copy the database from one environment into another. For example, to import the production database into development you can run:
 
 ```
-libops sync-db --source production --target development
+sitectl sync-db --source production --target development
 ```
